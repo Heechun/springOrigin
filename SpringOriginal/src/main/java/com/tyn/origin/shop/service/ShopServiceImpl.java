@@ -8,8 +8,10 @@ public class ShopServiceImpl implements ShopService {
 
 	@Override
 	public ModelAndView shopContent() {
-		// TODO Auto-generated method stub
-		return null;
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("shopContent");
+		
+		return mav;
 	}
 	
 }
