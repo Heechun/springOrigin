@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.tyn.origin.bbs.dao.BBSDao">
+
+	<select id="getTotalCount" resultType="Int">
+		SELECT COUNT(*)
+		FROM BBS
+	</select>
+	
+	<select id="getBBSList" parameterType="java.util.HashMap" resultType="BBSVO">
+		SELECT idx, id, title, content, hit, TO_CHAR(writeDate, 'YYYY-MM-DD') writeDate, password 
+		FROM (SELECT ROWNUM rm, a.* 
+			  FROM (SELECT * 
+					FROM BBS
+					ORDER BY idx) a)
+		WHERE rm BETWEEN #{startRow} AND #{endRow}
+		ORDER BY idx desc
+	</select>
+	
+	<insert id="insertBBS" parameterType="BBSVO">
+		INSERT INTO BBS
+		VALUES(origin_bbs_seq.nextval, #{id}, #{title}, #{content}, 0, sysdate, #{password})
+	</insert>
+	
+	<select id="getBBSContent" parameterType="Int" resultType="BBSVO">
+		SELECT idx, id, title, content, hit, TO_CHAR(writeDate, 'YYYY-MM-DD HH:MM:SS') writeDate, password
+		FROM BBS
+		WHERE IDX = #{idx}
+	</select>
+	
+	<update id="updateHit" parameterType="Int">
+		UPDATE BBS
+		SET HIT = HIT+1
+		WHERE idx = #{idx}
+	</update>
+	
+	<insert id="insertComment" parameterType="CommentVO">
+		INSERT INTO BBS_COMMENT
+		VALUES(#{bbsIdx}, origin_comment_seq.nextval, #{commentId}, #{commentPassword}, #{commentContent}, sysdate, 0, 0)
+	</insert>
+	
+	<select id="getCommentList" parameterType="Int" resultType="CommentVO">
+		SELECT bbsIdx, commentIdx, commentId, commentPassword, commentContent, TO_CHAR(commentDate, 'yy"년 "monthdd"일" hh24"시"mm"분"ss"초"') commentDate, good, bad
+    	FROM (SELECT bbsIdx, commentIdx, commentId, commentPassword, commentContent, commentDate, good, bad, good-bad popular
+			  FROM BBS_COMMENT
+			  WHERE bbsIdx = #{idx}
+    		  ORDER BY popular desc, commentIdx)
+	</select>
+	
+	<select id="getCommentListByNew" parameterType="Int" resultType="CommentVO">
+		SELECT bbsIdx, commentIdx, commentId, commentPassword, commentContent, TO_CHAR(commentDate, 'yy"년 "monthdd"일" hh24"시"mm"분"ss"초"') commentDate, good, bad
+		FROM BBS_COMMENT
+		WHERE bbsIdx = #{idx}
+		ORDER BY commentDate desc
+	</select>
+	
+	<update id="updateGoodCount" parameterType="Int">
+		UPDATE BBS_COMMENT
+		SET GOOD = GOOD+1
+		WHERE COMMENTIDX = #{commentIdx}
+	</update>
+	<update id="updateBadCount" parameterType="Int">
+		UPDATE BBS_COMMENT
+		SET BAD = BAD+1
+		WHERE COMMENTIDX = #{commentIdx}
+	</update>
+	
+	<delete id="deleteComment" parameterType="Int">
+		DELETE
+		FROM BBS_COMMENT
+		WHERE COMMENTIDX = #{commentIdx}
+	</delete>
+	
+	<delete id="deleteBBS" parameterType="Int">
+		DELETE
+		FROM BBS
+		WHERE IDX = #{idx}
+	</delete>
+</mapper>

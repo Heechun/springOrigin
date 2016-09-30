@@ -1,0 +1,83 @@
+@charset "UTF-8";
+
+/*
+ * custom.css
+ */
+@import url(http://fonts.googleapis.com/earlyaccess/notosanskr.css);
+
+@font-face {
+  font-family: 'Jeju Gothic';
+  font-style: normal;
+  font-weight: 0;
+  src: url(//fonts.gstatic.com/ea/jejugothic/v3/JejuGothic-Regular.eot);
+  src: url(//fonts.gstatic.com/ea/jejugothic/v3/JejuGothic-Regular.eot?#iefix) format('embedded-opentype'),
+       url(//fonts.gstatic.com/ea/jejugothic/v3/JejuGothic-Regular.woff2) format('woff2'),
+       url(//fonts.gstatic.com/ea/jejugothic/v3/JejuGothic-Regular.woff) format('woff'),
+       url(//fonts.gstatic.com/ea/jejugothic/v3/JejuGothic-Regular.ttf) format('truetype');
+}
+@media screen and (min-width: 768px) {
+    .modal-dialog {
+        left: 50%;
+        right: auto;
+        width: 624px;
+    }
+}
+ body {
+        font-family: 'Jeju Gothic', sans-serif;
+      }
+.center-block {
+	  display: block;
+	  margin-left: auto;
+	  margin-right: auto;
+	}
+table {
+	background-color: snow;
+}
+#password, #commentPassword, #inputPassword {
+	font-family: sans-serif;
+}
+#map{
+	height: 500px;
+}
+#companyAddr {
+	font-size: 20px;
+}
+.panel {
+	background: snow;
+	border-color: bisque;
+	padding-bottom: 20px;
+    padding-top: 20px;
+}
+.naver-login {
+	margin-top: 15px;
+}
+#commentContent, #commentBtn {
+	height: 60px;
+	width: 100%;
+}
+#comment-table{
+	width: 50%;
+	background-color: #eee;
+}
+#img-good{
+	height: 20%;
+}
+.remove {
+	padding : 0px;
+}
+.modal-dialog{
+	position: absolute;
+	left: 50%;
+	margin-left: -312px;
+	height: 500px;
+	top: 50%;
+	margin-top: -250px;
+}
+.img-button{
+	border: 2px;
+	padding: 2px;
+}
+.gallery-color{
+	background-color : beige;
+}
+}
