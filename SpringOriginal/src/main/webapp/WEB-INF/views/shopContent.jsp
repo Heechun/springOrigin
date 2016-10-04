@@ -27,8 +27,8 @@
 		<h4></h4>
 	</div>
 	<div class="col-md-3 col-md-offset-9">
-		<button class="btn btn-primary" type="submit">Order</button>
-		<button id="backButton" class="btn btn-warning">Back to Page</button>
+		<button class="btn btn-primary" >Order</button>
+		<input id="backButton" class="btn btn-warning" value="Back to list"/>
 	</div>
 	</form>
 	<div class="col-md-5">
@@ -41,7 +41,7 @@ function captureReturnKey(e) {
     if(e.keyCode==13 && e.srcElement.type != 'input'){
     	return false;	
     }
-}; 
+};
 $("#backButton").click(function(){
 	window.location = "shopMain.do";
 });

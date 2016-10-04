@@ -3,12 +3,14 @@ package com.tyn.origin.main.controller;
 import java.util.HashMap;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -34,13 +36,13 @@ public class MainController {
 	private final String naverClientId = "vD44jP35GPRhQOPUhnaG";
 	private final String naverClientSecret = "Rk7NhmmsVz";
 	private String returnUrl;
-
+	
+	
 	private static final Logger logger = LoggerFactory.getLogger(MainController.class);
 		
 	@RequestMapping("/main.do")
-	public ModelAndView main(HttpSession session){
-		logger.info("main.do 접속");
-		
+	public ModelAndView main(Model model){
+		logger.info("main.do 접속");		
 		return mainService.getMain();
 	}
 	
@@ -61,10 +63,37 @@ public class MainController {
 	 * 반드시 modelAttribute뒤에 써야 그 요소에 대한 검증가능
 	 *  
 	 */
-	@RequestMapping("/memberAdd.do")//
+	@RequestMapping("/memberAdd.do")
 	public String memberAdd(@ModelAttribute String user, BindingResult bindingResult){
 		return "memberAdd";
 	}
+	
+	/*
+	 * 관리자 관련기능
+	 * 1. manager Login Check
+	 * 2. manager Main Page , login
+	 * 3. manager Logout
+	 * 
+	 */
+
+	@RequestMapping("/loginCheck.do")
+	public void loginCheck(@RequestParam("inputId") String inputId, @RequestParam("inputPassword") String inputPassword, HttpServletResponse res){
+		logger.info("loginCheck.do 접속(json)");
+		mainService.loginCheck(inputId, inputPassword, res);
+	}
+	@RequestMapping("/managerMain.do")
+	public String managerMain(HttpSession session){
+		logger.info("managerMain 접속");
+		session.setAttribute("admin", "manager");
+		return "main";
+	}
+	@RequestMapping("/admin/managerLogout.do")
+	public String managerLogout(HttpSession session){
+		logger.info("managerLogout 접속");
+		session.invalidate();
+		return "redirect:/main.do";
+	}
+	
 	/*
 	 * 네이버 로그인 API
 	 * 

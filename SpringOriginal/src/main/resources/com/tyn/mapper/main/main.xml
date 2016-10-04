@@ -4,5 +4,11 @@
 
 <mapper namespace="com.tyn.origin.main.dao.MainDao">
 
+<select id="getPassword" parameterType="String" resultType="String">
+		SELECT manager_Password
+		FROM MANAGER
+		WHERE manager_Id = #{inputId}
+</select>
+
 	
 </mapper>

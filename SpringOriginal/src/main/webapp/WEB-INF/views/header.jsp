@@ -43,12 +43,16 @@
 			<ul class="nav navbar-nav navbar-right">
 				
 				<li>
-					<c:if test="${nickname==null}">
+					<c:if test="${nickname==null && admin==null}">
 						<button id="logoutBtn" class="btn btn-default img-button" onclick="location.href='naverLogin.do'"><img src="resources/images/login.PNG" alt="login" /></button>
 					</c:if>
 					<c:if test="${nickname!=null}">
 						${nickname}님 
 						<button id="logoutBtn" class="btn btn-default img-button" onclick="logoutFunc()"><img src="resources/images/logout.PNG" alt="logout" /></button>
+					</c:if>
+					<c:if test="${admin!=null}">
+						${admin}님 
+						<input type="button" value="Logout" onclick="managerLogout()" />
 					</c:if>
 				</li>
 			</ul>
@@ -65,6 +69,8 @@
     	logoutWindow = window.open("http://nid.naver.com/nidlogin.logout", "logoutWindow", "width=10, height=10");
 		setTimeout(function(){ logoutWindow.close(); }, 100);
 		setTimeout(function(){ location.href="naverLogout.do"; }, 300);
-    	
+    }
+    function managerLogout(){
+    	location.href="admin/managerLogout.do";
     }
     </script>
