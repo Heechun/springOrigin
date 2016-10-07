@@ -70,5 +70,11 @@ public class ShopServiceImpl implements ShopService {
 		
 		return mav;
 	}
+
+	@Override
+	public void cartDelete(String cartNum) {
+		shopDao.deleteCart(cartNum);
+		
+	}
 	
 }

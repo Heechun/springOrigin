@@ -69,7 +69,13 @@ public class ShopController {
 	@RequestMapping("cartList.do")
 	public ModelAndView cartList(){
 		logger.info("cartList.do");
-		
 		return shopService.cartList();
+	}
+	@RequestMapping("cartDelete.do")
+	public String cartDelete(String cartNum){
+		logger.info("cartDelete.do");
+		shopService.cartDelete(cartNum);
+		
+		return "redirect:/cartList.do";
 	}
 }

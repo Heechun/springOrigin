@@ -26,8 +26,8 @@
 			</tr>
 		</table>
 	</div>
-	<div class="container">
-		<div class="col-md-2 col-md-offset-4" style="padding-right: 0px;">
+	<div>
+		<div class="col-md-2 col-md-offset-10" style="padding-right: 0px;">
 			<select name="selectSorting" id="selectSorting" class="form-control" onchange="sortFunc(value)">
 				<option value="0" selected="selected">인기순</option>
 				<option value="1">최신순</option>
@@ -36,20 +36,20 @@
 		</div>
 		
 		<c:forEach var="commentList" items="${commentList}">
-		<div class="col-md-12">
-			<table class="table table-hover table-bordered col-md-12" id="comment-table">
+		<div>
+			<table class="table table-bordered" id="comment-table">
 				<tr>
-					<td width="20%" rowspan="2" class="text-center">${commentList.commentId}</td>
-					<td colspan="2">
+					<td class="text-center">${commentList.commentId}</td>
+					<td>${commentList.commentDate}</td>
+					<td rowspan="2">
 						${commentList.commentContent}
-						<button class="glyphicon glyphicon-remove remove pull-right" 
-						onclick="commentRemove(${commentList.commentIdx}, '${commentList.commentPassword}')">
-						</button>
+						<div class="btn btn-danger glyphicon glyphicon-remove remove pull-right" 
+						onclick="commentRemove(${commentList.commentIdx}, ${commentList.commentPassword})">
+						</div>
 					</td>
 				</tr>
 				<tr>
-					<td>${commentList.commentDate}</td>
-					<td style="width: 140px;">
+					<td colspan="2">
 						<button class="btn btn-sm btn-primary glyphicon glyphicon-thumbs-up" id="goodBtn" onclick="goodAndBadFunc(${commentList.commentIdx}, 0)">
 							<span id="goodValue${commentList.commentIdx}" >${commentList.good}</span>
 						</button>

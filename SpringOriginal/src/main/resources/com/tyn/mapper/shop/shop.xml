@@ -34,4 +34,10 @@
 		FROM SHOP_CART A, SHOP_ITEM B
 		WHERE A.CARTITEMNUM = B.ITEMNUM
 	</select>
+	
+	<delete id="deleteCart" parameterType="String">
+		DELETE
+		FROM SHOP_CART
+		WHERE CARTNUM = #{cartNum}
+	</delete>
 </mapper>

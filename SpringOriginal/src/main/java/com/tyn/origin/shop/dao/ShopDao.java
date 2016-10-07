@@ -23,4 +23,6 @@ public interface ShopDao {
 
 	List<CartItemVO> getCartList();
 
+	void deleteCart(String cartNum);
+
 }

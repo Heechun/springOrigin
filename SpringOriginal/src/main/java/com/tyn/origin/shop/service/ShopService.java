@@ -17,4 +17,6 @@ public interface ShopService {
 
 	ModelAndView cartList();
 
+	void cartDelete(String cartNum);
+
 }
