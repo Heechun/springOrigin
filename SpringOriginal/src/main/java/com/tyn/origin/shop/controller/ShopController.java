@@ -6,11 +6,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.tyn.origin.bbs.controller.BBSController;
 import com.tyn.origin.shop.service.ShopService;
-import com.tyn.origin.shop.vo.OrderVo;
+import com.tyn.origin.shop.vo.OrderVO;
+import com.tyn.origin.shop.vo.ShopItemVO;
 
 @Controller
 public class ShopController {
@@ -20,23 +22,40 @@ public class ShopController {
 	private static final Logger logger = LoggerFactory.getLogger(BBSController.class);
 	
 	@RequestMapping("/shopMain.do")
-	public String shopMain(){
+	public ModelAndView shopMain(){
 		logger.info("shopMain.do 접속");
 		
-		return "shopMain";
+		return shopService.shopMain();
 	}
 	@RequestMapping("/shopContent.do")
-	public ModelAndView shopContent(){
+	public ModelAndView shopContent(String itemNum){
 		logger.info("shopContent.do 접속");
 		
-		return shopService.shopContent();
+		return shopService.shopContent(itemNum);
 	}
-	
 	@RequestMapping("/shopOrder.do")
-	public String shopOrder(OrderVo orderVo, Model model){
+	public String shopOrder(OrderVO orderVO, Model model){
 		logger.info("shopOrder.do 접속");
-		model.addAttribute("orderVo", orderVo);
-		return "shopOrder";
+		
+		orderVO.setOrderTotalPrice(orderVO.getOrderItemPrice()*orderVO.getOrderItemCount()+orderVO.getOrderShipping());
+		
+		model.addAttribute("orderVO", orderVO);
+		return "shop/shopOrder";
+	}
+	/*
+	 * 상품 추가 관련 기능
+	 * 
+	 */
+	@RequestMapping("/admin/addItem.do")
+	public String addItem(){
+		logger.info("/admin/addItem.do 접속");
+		return "shop/addItem";
+	}
+	@RequestMapping("/admin/addItemImpl.do")
+	public String addItemImpl(ShopItemVO shopItemVO, MultipartHttpServletRequest mReq){
+		logger.info("/admin/addItemImpl.do 접속");
+		
+		return shopService.addItemImpl(shopItemVO, mReq);
 	}
 	
 }
