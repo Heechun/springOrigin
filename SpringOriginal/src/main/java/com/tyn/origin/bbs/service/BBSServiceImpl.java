@@ -65,7 +65,7 @@ public class BBSServiceImpl implements BBSService {
 		mav.addObject("page", page);
 		mav.addObject("totalPage", totalPage);
 		mav.addObject("totalCount", totalCount);
-		mav.setViewName("bbs");
+		mav.setViewName("bbs/bbs");
 		return mav;
 	}
 
@@ -90,7 +90,7 @@ public class BBSServiceImpl implements BBSService {
 		mav.addObject("bbsVo", bbsVo);
 		mav.addObject("commentList", commentVo);
 		mav.addObject("page", page);
-		mav.setViewName("read");
+		mav.setViewName("bbs/read");
 		return mav;
 	}
 

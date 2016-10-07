@@ -23,4 +23,15 @@
 		FROM SHOP_ITEM
 		WHERE ITEMNUM = #{itemNum}
 	</select>
+	
+	<insert id="insertCart" parameterType="String">
+		INSERT INTO SHOP_CART
+		VALUES(ORIGIN_SHOP_CART_SEQ.nextval, #{cartItemNum}, 1)
+	</insert>
+	
+	<select id="getCartList" resultType="CartItemVO">
+		SELECT CARTNUM, CARTITEMNUM, CARTITEMCOUNT, ITEMPRICE AS CARTITEMPRICE, ITEMNAME AS CARTITEMNAME
+		FROM SHOP_CART A, SHOP_ITEM B
+		WHERE A.CARTITEMNUM = B.ITEMNUM
+	</select>
 </mapper>

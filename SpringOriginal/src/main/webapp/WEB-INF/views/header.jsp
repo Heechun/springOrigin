@@ -39,6 +39,7 @@
 				</li>
 				<li><a href="bbs.do?page=1">BBS</a></li>
 				<li><a href="shopMain.do">Shopping</a></li>
+				<li><a href="cartList.do">Cart</a></li>
 			</ul>
 			<ul class="nav navbar-nav navbar-right">
 				

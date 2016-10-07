@@ -57,5 +57,19 @@ public class ShopController {
 		
 		return shopService.addItemImpl(shopItemVO, mReq);
 	}
-	
+	/*
+	 * 장바구니 기능
+	 * 
+	 */
+	@RequestMapping("cartPut.do")
+	public void cartPut(String cartItemNum){
+		logger.info("cartPut.do ($.get) 접속");
+		shopService.cartPut(cartItemNum);
+	}
+	@RequestMapping("cartList.do")
+	public ModelAndView cartList(){
+		logger.info("cartList.do");
+		
+		return shopService.cartList();
+	}
 }

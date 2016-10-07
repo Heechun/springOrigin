@@ -11,6 +11,7 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.tyn.origin.shop.dao.ShopDao;
+import com.tyn.origin.shop.vo.CartItemVO;
 import com.tyn.origin.shop.vo.ShopItemVO;
 
 @Service
@@ -51,6 +52,22 @@ public class ShopServiceImpl implements ShopService {
 		
 		mav.addObject("itemList", itemList);
 		mav.setViewName("shop/shopMain");
+		return mav;
+	}
+
+	@Override
+	public void cartPut(String cartItemNum) {
+		shopDao.insertCart(cartItemNum);
+	}
+
+	@Override
+	public ModelAndView cartList() {
+		ModelAndView mav = new ModelAndView();
+		
+		List<CartItemVO> cartItemList = shopDao.getCartList();
+		mav.addObject("cartItemList", cartItemList);
+		mav.setViewName("shop/cartList");
+		
 		return mav;
 	}
 	

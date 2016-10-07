@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.stereotype.Repository;
 
 import com.tyn.origin.main.vo.FileVO;
+import com.tyn.origin.shop.vo.CartItemVO;
 import com.tyn.origin.shop.vo.ShopItemVO;
 
 @Repository
@@ -17,5 +18,9 @@ public interface ShopDao {
 	List<ShopItemVO> getItemList();
 
 	ShopItemVO getItem(String itemNum);
+
+	void insertCart(String cartItemNum);
+
+	List<CartItemVO> getCartList();
 
 }

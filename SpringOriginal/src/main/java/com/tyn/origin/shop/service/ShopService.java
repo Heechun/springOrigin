@@ -13,4 +13,8 @@ public interface ShopService {
 
 	ModelAndView shopMain();
 
+	void cartPut(String cartItemNum);
+
+	ModelAndView cartList();
+
 }

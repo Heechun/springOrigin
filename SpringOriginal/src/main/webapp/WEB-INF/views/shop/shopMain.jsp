@@ -15,7 +15,8 @@
 						<p>가격 : ${itemList.itemPrice}</p>
 						<p>판매량 : ${itemList.itemSellCount}</p>
 						<p class="text-right">
-							<a href="#" id="cartBtn" class="btn btn-primary" role="button">Cart</a>
+<!-- 							<label class="btn btn-primary cart">Cart</label> -->
+							<a class="btn btn-primary cart" href="#" role="button" data-toggle="modal" data-target="#cartModal">Cart</a>
 							<a href="#" class="btn btn-warning" role="button">Like</a>
 						</p>
 					</div>
@@ -24,9 +25,28 @@
 		</c:forEach>
 	</div>
 </div>
+<!-- Modal -->
+<div class="modal fade" id="cartModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content text-center">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">장바구니에 추가 되었습니다.</h4>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-warning" data-dismiss="modal">Keep shopping</button>
+        <button type="button" class="btn btn-primary" onclick="goCart()">Go to cart</button>
+      </div>
+    </div>
+  </div>
+</div>
 <script>
+
+	var cartClickCheck = false;
 	$(function(){
 		$("title").text($("title").text()+" | "+$("h1").text());
+	});
+	$('#cartModal').on('shown.bs.modal', function () {
 	});
 	$('.thumbnail').hover(function(){
 		$(this).addClass("gallery-color");
@@ -34,16 +54,28 @@
 	$('.thumbnail').mouseleave(function(){
 		$(this).removeClass("gallery-color");
 	});
+	$('.cart').click(function(){
+		cartClickCheck = true;
+		var cartItemNum = $(this).parent().parent().parent().children('p').text();
+		$.get("cartPut.do?cartItemNum="+cartItemNum);
+	});
+	function goCart(){
+		location.href="cartList.do";
+	};
 	$('.thumbnail').click(function(){
-		var itemNum = $(this).children('#itemNum').text();
-		location.href="shopContent.do?itemNum="+itemNum;
+		if(cartClickCheck===false){
+			var itemNum = $(this).children('#itemNum').text();
+			location.href="shopContent.do?itemNum="+itemNum; 
+		}
+		else{
+			cartClickCheck = false;
+		}
 	});
 	$('#addItem').click(function(){
 		location.href="admin/addItem.do";
 	});
-	$("#cartBtn").click(function(){
-		location.href="shopCart.do"
-	});
+
+	
 </script>
 </body>
 </html>
