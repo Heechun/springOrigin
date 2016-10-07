@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<jsp:include page="header.jsp" flush="false"/>
+<jsp:include page="../header.jsp" flush="false"/>
 <link href="resources/css/fotorama.css" rel="stylesheet">
 <script src="resources/js/fotorama.js"></script>
 <div class="container">
@@ -10,9 +10,12 @@
 		<img src="resources/images/image_03.jpg">
 	</div>
 	<form action="shopOrder.do" method="post">
+	<input class="hidden" name="orderItemPrice" value="${shopItemVO.itemPrice}"/>
+	<input class="hidden" name="orderItemName" value="${shopItemVO.itemName}"/>
+	<input class="hidden" name="orderItemNum" value="${shopItemVO.itemNum}"/>
 	<div class="col-md-3">
-		<p>Product : <span></span></p>
-		<p>Price : <span id="price">10000</span></p>
+		<p>Product : <span>${shopItemVO.itemName}</span></p>
+		<p>Price : <span id="price">${shopItemVO.itemPrice}</span></p>
 		<p>shipping : 
 		<select name="orderShipping" id="shipping">
 		  <option value="2500" selected="selected">Normal</option>
@@ -22,18 +25,18 @@
 		</p>
 		<p>Count :
 		<input id="count" type="number" placeholder="ex)1, 2..." required="required" value="1" 
-		onkeydown="return captureReturnKey(event)" name="orderCount">
+		onkeydown="return captureReturnKey(event)" name="orderItemCount">
 		<p/>
 		<h4></h4>
 	</div>
 	<div class="col-md-3 col-md-offset-9">
-		<button class="btn btn-primary" >Order</button>
 		<input id="backButton" class="btn btn-warning" value="Back to list"/>
+		<button class="btn btn-primary" >Order</button>
 	</div>
 	</form>
 	<div class="col-md-5">
-	<h3>자세히 보기</h3>
-	<p>sdfsdfs</p>
+	<h3>자세한 소개</h3>
+	<p>${shopItemVO.itemContent}</p>
 	</div>
 </div>
 <script>
@@ -64,8 +67,6 @@ $(function(){
 	});
 
 });
-
-
 </script>
 </body>
 </html>

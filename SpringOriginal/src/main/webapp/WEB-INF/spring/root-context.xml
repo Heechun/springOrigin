@@ -25,6 +25,10 @@
 		<property name="mapperInterface" value="com.tyn.origin.bbs.dao.BBSDao"/>
 		<property name="sqlSessionTemplate" ref="sqlSessionTemplate"/>
 	</bean>
+	<bean class="org.mybatis.spring.mapper.MapperFactoryBean" id="shopDao">
+		<property name="mapperInterface" value="com.tyn.origin.shop.dao.ShopDao"/>
+		<property name="sqlSessionTemplate" ref="sqlSessionTemplate"/>
+	</bean>
 	
 	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource">
         <property name="driverClassName" value="oracle.jdbc.driver.OracleDriver"/>

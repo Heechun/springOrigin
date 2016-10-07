@@ -53,8 +53,10 @@ public class MainController {
 		return mainService.intro();
 	}
 	@RequestMapping("/location.do")
-	public void location(){
+	public String location(){
 		logger.info("location.do 접속");
+		
+		return "/main/location";
 	}
 	/*
 	 * BindingReuslt or Error
@@ -65,7 +67,7 @@ public class MainController {
 	 */
 	@RequestMapping("/memberAdd.do")
 	public String memberAdd(@ModelAttribute String user, BindingResult bindingResult){
-		return "memberAdd";
+		return "main/memberAdd";
 	}
 	
 	/*
@@ -85,7 +87,7 @@ public class MainController {
 	public String managerMain(HttpSession session){
 		logger.info("managerMain 접속");
 		session.setAttribute("admin", "manager");
-		return "main";
+		return "main/main";
 	}
 	@RequestMapping("/admin/managerLogout.do")
 	public String managerLogout(HttpSession session){
@@ -93,7 +95,7 @@ public class MainController {
 		session.invalidate();
 		return "redirect:/main.do";
 	}
-	
+
 	/*
 	 * 네이버 로그인 API
 	 * 
@@ -149,13 +151,7 @@ public class MainController {
 		session.removeAttribute("nickname");
 		session.removeAttribute("gender");
 		
-		return "main";
+		return "main/main";
 	}
-
-	public void setMainService(MainService mainService) {
-		this.mainService = mainService;
-
-	}
-	
 	
 }

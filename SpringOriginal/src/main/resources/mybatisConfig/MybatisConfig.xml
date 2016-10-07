@@ -18,7 +18,8 @@
 	<typeAliases>
 		<typeAlias alias="BBSVO" type="com.tyn.origin.bbs.vo.BBSVO"/>
 		<typeAlias alias="CommentVO" type="com.tyn.origin.bbs.vo.CommentVO"/>
-		
+		<typeAlias alias="ShopItemVO" type="com.tyn.origin.shop.vo.ShopItemVO"/>
+		<typeAlias alias="FileVO" type="com.tyn.origin.main.vo.FileVO"/>
 	</typeAliases>
 	
 </configuration>

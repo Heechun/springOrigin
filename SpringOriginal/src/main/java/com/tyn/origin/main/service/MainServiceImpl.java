@@ -23,7 +23,7 @@ public class MainServiceImpl implements MainService {
 	public ModelAndView getMain() {
 		mav = new ModelAndView();
 		
-		mav.setViewName("main");
+		mav.setViewName("main/main");
 		return mav;
 	}
 	
@@ -31,7 +31,7 @@ public class MainServiceImpl implements MainService {
 	public ModelAndView intro() {
 		mav = new ModelAndView();
 		
-		mav.setViewName("intro");
+		mav.setViewName("main/intro");
 		return mav;
 	}
 

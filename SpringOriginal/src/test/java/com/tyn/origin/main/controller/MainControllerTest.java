@@ -56,7 +56,7 @@ public class MainControllerTest {
         this.response = new MockHttpServletResponse();
         this.adapter = new AnnotationMethodHandlerAdapter();
         this.controller = new MainController();
-        this.controller.setMainService(mainService);
+//        this.controller.setMainService(mainService);
     }
 
     @After

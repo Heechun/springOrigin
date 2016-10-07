@@ -1,6 +1,6 @@
  <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
  <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
- <jsp:include page="header.jsp" flush="false"/>
+ <jsp:include page="../header.jsp" flush="false"/>
     <h1 class="text-center">게시판</h1>
     <div class="container-fluid">
 		<div class="table-responsive col-md-6 col-md-offset-3">
@@ -61,7 +61,7 @@
 	
 	<script>
 	$(function(){
-		$("#title").text($("h1").text());
+		$("title").text($("title").text()+" | "+$("h1").text());
 	});
 	var page = ${page};
 	if(page==1){

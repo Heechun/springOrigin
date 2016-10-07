@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
- <jsp:include page="header.jsp" flush="false"/>
+ <jsp:include page="../header.jsp" flush="false"/>
 <div class="col-md-8 col-md-offset-2">
 	<div class="container">
 		<div class="col-md-8 col-md-offset-2">
@@ -16,7 +16,7 @@
 <script src="//apis.daum.net/maps/maps3.js?apikey=3283fe99558bf610a870f5a13f06c452"></script>
 	<script>
 	$(function(){
-		$("#title").text($("h2").text());
+		$("title").text($("title").text()+" | "+$("h2").text());
 	});
 		var xPoint = 37.510525;
 		var yPoint = 127.079040;

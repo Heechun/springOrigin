@@ -31,7 +31,7 @@ public class BBSController {
 	@RequestMapping("/bbsInsert.do")
 	public String bbsInsert(){
 		logger.info("bbsInsert.do 접속");
-		return "insert";
+		return "bbs/insert";
 	}
 	
 	@RequestMapping("/bbsInsertImpl.do")

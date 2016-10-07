@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
- <jsp:include page="header.jsp" flush="false"/>
+ <jsp:include page="../header.jsp" flush="false"/>
  
   <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
   <!-- Indicators -->
@@ -104,7 +104,7 @@
             	else if(status == 1){
             		$('#loginStatus').text("로그인 성공");
             		 alert("로그인 성공");
-        			 location.href = "admin/managerMain.do";
+        			 location.href = "managerMain.do";
             	}
             	else if(status == 2){
             		$('#loginStatus').text("비밀번호를 확인하세요");

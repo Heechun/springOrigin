@@ -4,5 +4,23 @@
 
 <mapper namespace="com.tyn.origin.shop.dao.ShopDao">
 
+	<insert id="insertShopItem" parameterType="ShopItemVO">
+		INSERT INTO SHOP_ITEM 
+		VALUES(origin_shop_item_seq.nextval,#{itemNum},#{itemName},#{itemPrice},0,#{itemContent},0,sysdate,0)
+	</insert>
+	<insert id="insertFile" parameterType="FileVO">
+		INSERT INTO shop_FILELIST
+		values(origin_shop_file_seq.nextval, #{originFname}, #{storedFname}, #{fileLength}, #{itemNum})
+	</insert>
 	
+	<select id="getItemList" resultType="ShopItemVO">
+		select *
+		from shop_item
+	</select>
+	
+	<select id="getItem" parameterType="String" resultType="ShopItemVO">
+		SELECT *
+		FROM SHOP_ITEM
+		WHERE ITEMNUM = #{itemNum}
+	</select>
 </mapper>

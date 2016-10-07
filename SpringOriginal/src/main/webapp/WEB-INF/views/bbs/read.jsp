@@ -1,9 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
- <jsp:include page="header.jsp" flush="false"/>
+ <jsp:include page="../header.jsp" flush="false"/>
 <div class="col-md-8 col-md-offset-2">
 	<div>
-		<h2 class="text-center page-header">게시판</h2>
+		<h2 class="text-center page-header">글읽기</h2>
 	</div>
 	<div>
 		<table class=" table table-bordered table-striped" >
@@ -105,6 +105,9 @@
   </div>
 </div>
 <script>
+	$(function(){
+		$("title").text($("title").text()+" | "+$("h2").text());
+	});
 	$('#removeModal').on('shown.bs.modal', function () {
 	    $('#inputPassword').focus();
 	});
